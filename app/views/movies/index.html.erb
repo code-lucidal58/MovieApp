@@ -1,0 +1,30 @@
+<div class="hero">
+  <div class="container">
+    <h2>Interstellar</h2>
+    <p>Former NASA pilot Cooper (Matthew McConaughey) and a team of researchers travel across the galaxy to find out which of three planets could be mankind's new home.</p>
+    <a href="#">Read More</a>
+  </div>
+</div>
+
+<div class="main">
+  <div class="container">
+    <h2>Popular Films</h2>
+
+    <%= @movies.each do |m| %>
+        <p><%= image_tag m.image%></p>
+        <p><%= m.title %></p>
+        <p><%= m.release_year %></p>
+        <p><%= m.plot %></p>
+        <p><%= link_to "Learn more", movie_path(m) %></p>
+    <% end %>
+    <!--
+    To do: Loop through movies and display each one with this HTML
+    <div class="movie">
+      movie image goes here
+      <h3> movie title goes here </h3>
+      <p> movie release year goes here </p>
+    </div>
+    -->
+
+  </div>
+</div>

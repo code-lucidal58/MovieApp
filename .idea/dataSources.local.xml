@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Rails MovieApp-Codecademy: production" uuid="f759bab5-0d16-44cd-b3fc-8ab767db0686">
+      <user-name>MovieApp-Codecademy</user-name>
+      <user-password>df96df8fdf97df8adfefdfe4dffcdff1df8ddfe7dfe5dffcdfe3dfefdfebdffadffadf87dfe9dfe5dfeedfefdfe9dfebdfeedfefdfe7dff3dff5dfeedfebdffedfebdfe8dfebdff9dfefdff5dffadfebdff9dff9dffddfe5dff8dfeedf8ddff7df8adf8fdf94</user-password>
+    </data-source>
+    <data-source name="Rails MovieApp-Codecademy: test" uuid="0d05872c-9bb7-4ec9-a9e8-83f7aab14792">
+      <user-name>root</user-name>
+    </data-source>
+    <data-source name="Rails MovieApp-Codecademy: development" uuid="372f50fa-1d04-4ece-896f-95c054c5de6a">
+      <user-name>root</user-name>
+      <schema-pattern>movieapp-codecademy_development.*</schema-pattern>
+      <default-schemas>movieapp-codecademy_development.*</default-schemas>
+    </data-source>
+  </component>
+</project>
