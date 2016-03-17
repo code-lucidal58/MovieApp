@@ -1,0 +1,727 @@
+  [1m[36m (440.4ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (508.4ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations`  ON `schema_migrations` (`version`) 
+  [1m[36mActiveRecord::SchemaMigration Load (23.0ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateMovies (20160313171907)
+  [1m[35m (211.9ms)[0m  CREATE TABLE `movies` (`id` int(11) auto_increment PRIMARY KEY, `title` varchar(255), `image` varchar(255), `release_year` varchar(255), `plot` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (10.0ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20160313171907')
+  [1m[36m (124.9ms)[0m  [1mCOMMIT[0m
+Migrating to CreateActors (20160313172009)
+  [1m[35m (344.3ms)[0m  CREATE TABLE `actors` (`id` int(11) auto_increment PRIMARY KEY, `first_name` varchar(255), `last_name` varchar(255), `image` varchar(255), `bio` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20160313172009')
+  [1m[36m (27.0ms)[0m  [1mCOMMIT[0m
+Migrating to CreateParts (20160313172105)
+  [1m[35m (260.3ms)[0m  CREATE TABLE `parts` (`id` int(11) auto_increment PRIMARY KEY, `movie_id` int(11), `actor_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_parts_on_movie_id`  (`movie_id`) ,  INDEX `index_parts_on_actor_id`  (`actor_id`) ) ENGINE=InnoDB
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20160313172105')
+  [1m[36m (18.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (1.0ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (25.1ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'MovieApp-Codecademy_development'
+  AND fk.table_name = 'actors'
+[0m
+  [1m[35m (0.0ms)[0m  SHOW CREATE TABLE `actors`
+  [1m[36m (2.0ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'MovieApp-Codecademy_development'
+  AND fk.table_name = 'movies'
+[0m
+  [1m[35m (1.0ms)[0m  SHOW CREATE TABLE `movies`
+  [1m[36m (1.0ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'MovieApp-Codecademy_development'
+  AND fk.table_name = 'parts'
+[0m
+  [1m[35m (0.0ms)[0m  SHOW CREATE TABLE `parts`
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('George', 'Clooney', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/george-clooney.jpg', 'George Timothy Clooney is an American actor, writer, producer, director, and activist. He has received three Golden Globe Awards for his ...', '2016-03-13 17:36:50', '2016-03-13 17:36:50')[0m
+  [1m[35m (53.2ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Matt', 'Damon', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/matt-damon.jpg', 'Matthew Paige \"Matt\" Damon is an American actor, voice actor, screenwriter, producer, and philanthropist.', '2016-03-13 17:36:50', '2016-03-13 17:36:50')
+  [1m[36m (59.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Brad', 'Pitt', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/brad-pitt.jpg', 'William Bradley \"Brad\" Pitt is an American actor and producer. He has received a Golden Globe Award, a Screen Actors Guild Award, and thr...', '2016-03-13 17:36:50', '2016-03-13 17:36:50')[0m
+  [1m[35m (60.6ms)[0m  COMMIT
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Elliot', 'Gould', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/elliot-gould.jpg', 'Elliott Gould is an American actor. He began acting in Hollywood films during the 1960s, and has remained prolific ever since. ', '2016-03-13 17:36:50', '2016-03-13 17:36:50')
+  [1m[36m (40.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Julia', 'Roberts', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/julia-roberts.jpg', 'Julia Fiona Roberts is an American actress and producer. She became a Hollywood star after headlining the romantic comedy Pretty Woman, w...', '2016-03-13 17:36:50', '2016-03-13 17:36:50')[0m
+  [1m[35m (24.1ms)[0m  COMMIT
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Mark', 'Wahlberg', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/mark-wahlberg.jpg', 'Mark Robert Michael Wahlberg is an American actor, producer, model, and former rapper. He was known as Marky Mark in his earlier years, b...', '2016-03-13 17:36:50', '2016-03-13 17:36:50')
+  [1m[36m (27.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Marion', 'Cotillard', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/marion-cotillard.jpg', 'Marion Cotillard is a French actress, singer, songwriter, environmentalist and spokesperson for Greenpeace.', '2016-03-13 17:36:50', '2016-03-13 17:36:50')[0m
+  [1m[35m (25.7ms)[0m  COMMIT
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Laurence', 'Fishburne', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/laurence-fishburne.jpg', 'Laurence John Fishburne III is an American actor, playwright, director, and producer. He is best known for his roles as Morpheus in the M...', '2016-03-13 17:36:50', '2016-03-13 17:36:50')
+  [1m[36m (26.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Jude', 'Law', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/jude-law.jpg', 'David Jude Heyworth Law, known professionally as Jude Law, is an English actor, film producer and director. He began acting with the Nati...', '2016-03-13 17:36:50', '2016-03-13 17:36:50')[0m
+  [1m[35m (25.3ms)[0m  COMMIT
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Gwyneth', 'Paltrow', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/gwyneth-paltrow.jpg', 'Gwyneth Kate Paltrow is an American actress, singer, and food writer. Paltrow gained early notice for her work in films such as the psych...', '2016-03-13 17:36:50', '2016-03-13 17:36:50')
+  [1m[36m (27.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Kate', 'Winslet', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/kate-winslet.jpg', 'Kate Elizabeth Winslet, CBE, is an English actress and singer. She is the recipient of an Academy Award, an Emmy Award, three Golden Glob...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')[0m
+  [1m[35m (26.2ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Bryan', 'Cranston', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/bryan-cranston.jpg', 'Bryan Lee Cranston is an American actor, voice actor, screenwriter, director and producer. Cranston is best known for portraying Walter W...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')
+  [1m[36m (27.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Leonardo', 'DiCaprio', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/leonardo-dicaprio.jpg', 'Leonardo Wilhelm DiCaprio is an American actor and film producer. He has been nominated for ten Golden Globe Awards, winning two, and fo...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')[0m
+  [1m[35m (26.1ms)[0m  COMMIT
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Jack', 'Nicholson', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/jack-nicholson.jpg', 'John Joseph \"Jack\" Nicholson is an American actor, film director, producer, and writer. Throughout his career, Nicholson has portrayed un...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')
+  [1m[36m (27.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Joseph', 'Gordon-Levitt', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/joseph-gordon-levitt.jpg', 'Joseph Leonard Gordon-Levitt is an American actor and filmmaker. As a child star, he appeared in the films A River Runs Through It, Angel...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')[0m
+  [1m[35m (37.8ms)[0m  COMMIT
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Tom', 'Hardy', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/tom-hardy.jpg', 'Edward Thomas \"Tom\" Hardy is an English actor. Hardy\'s notable film roles include the science fiction film Star Trek: Nemesis, the Guy Ri...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')
+  [1m[36m (27.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Cillian', 'Murphy', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/cillian-murphy.jpg', 'Cillian Murphy is an Irish actor of stage and screen. Since making his debut in his home country in the late 1990s, Murphy has also becom...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')[0m
+  [1m[35m (26.2ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Christian', 'Bale', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/christian-bale.jpg', 'Christian Charles Philip Bale is an English actor. He has starred in both blockbuster films and smaller projects from independent produce...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')
+  [1m[36m (27.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Morgan', 'Freeman', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/morgan-freeman.jpg', 'Morgan Freeman is an American actor, film director, and narrator. Freeman has received Academy Award nominations for his performances in ...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')[0m
+  [1m[35m (26.5ms)[0m  COMMIT
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Robert', 'Downey Jr.', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/rdj.jpg', 'Robert John Downey Jr. is an American actor, producer, and singer. Making his screen debut at the age of five, appearing in his father Ro...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')
+  [1m[36m (28.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Terrence', 'Howard', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/terrence-howard.jpg', 'Terrence Dashon Howard is an American actor and singer. Having his first major role in the 1995 film Dead Presidents, and Mr. Holland\'s O...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')[0m
+  [1m[35m (26.5ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Jeff', 'Bridges', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/jeff-bridges.jpg', 'Jeffrey Leon \"Jeff\" Bridges is an American actor, country musician, and producer. He comes from a well-known acting family and began his ...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')
+  [1m[36m (28.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Rachel', 'McAdams', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/rachel-mcadams.jpg', 'Rachel Anne McAdams is a Canadian actress. After graduating from a four-year theatre program at York University in 2001, she initially wo...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')[0m
+  [1m[35m (27.0ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Mark', 'Strong', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/mark-strong.jpg', 'Mark Strong is an English film and television actor. He is best known for his role in the television series Our Friends in the North and ...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')
+  [1m[36m (27.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Diane', 'Lane', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/diane-lane.jpg', 'Diane Lane is an American actress. Born and raised in New York City, Lane made her screen debut in George Roy Hill\'s 1979 film A Little R...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')[0m
+  [1m[35m (27.1ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Ellen', 'Page', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/ellen-page.jpg', 'Ellen Philpotts-Page, known professionally as Ellen Page, is a Canadian actress. She started her career in Canada with roles in the telev...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')
+  [1m[36m (27.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Anne', 'Hathaway', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/anne-hathaway.jpg', 'Anne Jacqueline Hathaway is an American actress, singer, and producer. After several stage roles, she appeared in the 1999 television ser...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')[0m
+  [1m[35m (26.5ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Michael', 'Caine', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/michael-caine.jpg', 'Sir Michael Caine, CBE is an English actor and author. Renowned for his distinctive Cockney accent, Caine has appeared in over 115 films ...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')
+  [1m[36m (27.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Natalie', 'Portman', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/natalie-portman.png', 'Natalie Portman is an Israeli-born American actress, producer, and director. Her first role was in the 1994 action thriller Lon: The Pr...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')[0m
+  [1m[35m (26.1ms)[0m  COMMIT
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Clive', 'Owen', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/clive-owen.jpg', 'Clive Owen is an English actor who first gained recognition in the United Kingdom for playing the lead role in the ITV series Chancer fro...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')
+  [1m[36m (28.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `actors` (`first_name`, `last_name`, `image`, `bio`, `created_at`, `updated_at`) VALUES ('Matthew', 'McConaughey', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/matthew-mcconaughey.jpg', 'Matthew David McConaughey is an American actor and producer. He first gained notice for his breakout role in the coming-of-age comedy Daz...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')[0m
+  [1m[35m (27.3ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `movies` (`title`, `image`, `release_year`, `plot`, `created_at`, `updated_at`) VALUES ('Ocean\'s 11', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/oceans-11.jpg', '2001', 'Dapper Danny Ocean (George Clooney) is a man of action. Less than 24 hours into his parole from a New Jersey penitentiary, the wry, chari...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')
+  [1m[36m (31.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO `movies` (`title`, `image`, `release_year`, `plot`, `created_at`, `updated_at`) VALUES ('The Perfect Storm', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/the-perfect-storm.jpg', '2000', 'Based on a true story, the film tells of the courageous men and women who risk their lives every working day, pitting their fishing boats...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')[0m
+  [1m[35m (27.7ms)[0m  COMMIT
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `movies` (`title`, `image`, `release_year`, `plot`, `created_at`, `updated_at`) VALUES ('Contagion', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/contagion.jpg', '2011', 'When Beth Emhoff (Gwyneth Paltrow) returns to Minnesota from a Hong Kong business trip, she attributes the malaise she feels to jet lag ...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')
+  [1m[36m (27.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `movies` (`title`, `image`, `release_year`, `plot`, `created_at`, `updated_at`) VALUES ('The Departed', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/the-departed.jpg', '2006', 'South Boston cop Billy Costigan (Leonardo DiCaprio) goes under cover to infiltrate the organization of gangland chief Frank Costello (Jac...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')[0m
+  [1m[35m (26.6ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `movies` (`title`, `image`, `release_year`, `plot`, `created_at`, `updated_at`) VALUES ('Inception', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/inception.jpg', '2010', 'Dom Cobb (Leonardo DiCaprio) is a thief with the rare ability to enter people\'s dreams and steal their secrets from their subconscious ...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')
+  [1m[36m (28.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `movies` (`title`, `image`, `release_year`, `plot`, `created_at`, `updated_at`) VALUES ('The Dark Knight Rises', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/dark-knight-rises.jpg', '2012', 'It has been eight years since Batman (Christian Bale), in collusion with Commissioner Gordon (Gary Oldman), vanished into the night. Assu...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')[0m
+  [1m[35m (27.0ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `movies` (`title`, `image`, `release_year`, `plot`, `created_at`, `updated_at`) VALUES ('Iron Man', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/iron-man.jpg', '2008', 'A billionaire industrialist and genius inventor, Tony Stark (Robert Downey Jr.), is conducting weapons tests overseas, but terrorists kid...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')
+  [1m[36m (27.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mSQL (2.0ms)[0m  [1mINSERT INTO `movies` (`title`, `image`, `release_year`, `plot`, `created_at`, `updated_at`) VALUES ('Sherlock Holmes', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/sherlock-holmes.jpg', '2009', 'When a string of brutal murders terrorizes London, it doesn\'t take long for legendary detective Sherlock Holmes (Robert Downey Jr.) and ...', '2016-03-13 17:36:51', '2016-03-13 17:36:51')[0m
+  [1m[35m (34.1ms)[0m  COMMIT
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO `movies` (`title`, `image`, `release_year`, `plot`, `created_at`, `updated_at`) VALUES ('Closer', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/closer.jpg', '2004', 'Alice (Natalie Portman), who has moved to London, meets Dan (Jude Law) on the street. While looking at him, a taxi hits her. After taking ...', '2016-03-13 17:36:52', '2016-03-13 17:36:52')
+  [1m[36m (27.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO `movies` (`title`, `image`, `release_year`, `plot`, `created_at`, `updated_at`) VALUES ('Interstellar', 'http://s3.amazonaws.com/codecademy-content/courses/learn-rails/img/interstellar.jpg', '2014', 'In Earth\'s future, a global crop blight and second Dust Bowl are slowly rendering the planet uninhabitable. Professor Brand (Michael Cai...', '2016-03-13 17:36:52', '2016-03-13 17:36:52')[0m
+  [1m[35m (26.2ms)[0m  COMMIT
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (1, 1, '2016-03-13 17:36:52', '2016-03-13 17:36:52')
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (1, 2, '2016-03-13 17:36:52', '2016-03-13 17:36:52')[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (1, 3, '2016-03-13 17:36:52', '2016-03-13 17:36:52')
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (1, 4, '2016-03-13 17:36:52', '2016-03-13 17:36:52')[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (1, 5, '2016-03-13 17:36:52', '2016-03-13 17:36:52')
+  [1m[36m (43.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (2, 1, '2016-03-13 17:36:52', '2016-03-13 17:36:52')[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (2, 6, '2016-03-13 17:36:52', '2016-03-13 17:36:52')
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (2, 25, '2016-03-13 17:36:52', '2016-03-13 17:36:52')[0m
+  [1m[35m (35.0ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (3, 7, '2016-03-13 17:36:52', '2016-03-13 17:36:52')
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (3, 8, '2016-03-13 17:36:52', '2016-03-13 17:36:52')[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (3, 9, '2016-03-13 17:36:52', '2016-03-13 17:36:52')
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (3, 10, '2016-03-13 17:36:52', '2016-03-13 17:36:52')[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (3, 11, '2016-03-13 17:36:52', '2016-03-13 17:36:52')
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (3, 12, '2016-03-13 17:36:52', '2016-03-13 17:36:52')[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (3, 4, '2016-03-13 17:36:52', '2016-03-13 17:36:52')
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (3, 2, '2016-03-13 17:36:52', '2016-03-13 17:36:52')[0m
+  [1m[35m (31.2ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (4, 2, '2016-03-13 17:36:52', '2016-03-13 17:36:52')
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (4, 13, '2016-03-13 17:36:52', '2016-03-13 17:36:52')[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (4, 14, '2016-03-13 17:36:52', '2016-03-13 17:36:52')
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (4, 6, '2016-03-13 17:36:52', '2016-03-13 17:36:52')[0m
+  [1m[35m (29.7ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (5, 13, '2016-03-13 17:36:52', '2016-03-13 17:36:52')
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (5, 26, '2016-03-13 17:36:52', '2016-03-13 17:36:52')[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (5, 15, '2016-03-13 17:36:52', '2016-03-13 17:36:52')
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (5, 16, '2016-03-13 17:36:52', '2016-03-13 17:36:52')[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (5, 7, '2016-03-13 17:36:52', '2016-03-13 17:36:52')
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (5, 17, '2016-03-13 17:36:52', '2016-03-13 17:36:52')[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (5, 28, '2016-03-13 17:36:52', '2016-03-13 17:36:52')
+  [1m[36m (23.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (6, 18, '2016-03-13 17:36:52', '2016-03-13 17:36:52')[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (6, 19, '2016-03-13 17:36:52', '2016-03-13 17:36:52')
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (6, 28, '2016-03-13 17:36:52', '2016-03-13 17:36:52')[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (6, 16, '2016-03-13 17:36:52', '2016-03-13 17:36:52')
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (6, 7, '2016-03-13 17:36:52', '2016-03-13 17:36:52')[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (6, 17, '2016-03-13 17:36:52', '2016-03-13 17:36:52')
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (6, 15, '2016-03-13 17:36:52', '2016-03-13 17:36:52')[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (6, 27, '2016-03-13 17:36:52', '2016-03-13 17:36:52')
+  [1m[36m (23.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (7, 20, '2016-03-13 17:36:52', '2016-03-13 17:36:52')[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (7, 21, '2016-03-13 17:36:52', '2016-03-13 17:36:52')
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (7, 22, '2016-03-13 17:36:52', '2016-03-13 17:36:52')[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (7, 10, '2016-03-13 17:36:52', '2016-03-13 17:36:52')
+  [1m[36m (29.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (8, 20, '2016-03-13 17:36:52', '2016-03-13 17:36:52')[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (8, 9, '2016-03-13 17:36:52', '2016-03-13 17:36:52')
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (8, 23, '2016-03-13 17:36:52', '2016-03-13 17:36:52')[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (8, 24, '2016-03-13 17:36:52', '2016-03-13 17:36:52')
+  [1m[36m (25.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (9, 5, '2016-03-13 17:36:52', '2016-03-13 17:36:52')[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (9, 9, '2016-03-13 17:36:52', '2016-03-13 17:36:52')
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (9, 29, '2016-03-13 17:36:52', '2016-03-13 17:36:52')[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (9, 30, '2016-03-13 17:36:52', '2016-03-13 17:36:52')
+  [1m[36m (35.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (10, 31, '2016-03-13 17:36:53', '2016-03-13 17:36:53')[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (10, 27, '2016-03-13 17:36:53', '2016-03-13 17:36:53')
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (10, 28, '2016-03-13 17:36:53', '2016-03-13 17:36:53')[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO `parts` (`movie_id`, `actor_id`, `created_at`, `updated_at`) VALUES (10, 2, '2016-03-13 17:36:53', '2016-03-13 17:36:53')
+  [1m[36m (39.0ms)[0m  [1mCOMMIT[0m
+
+
+Started GET "/" for ::1 at 2016-03-13 23:18:35 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/railties-4.2.5.1/lib/rails/templates/rails/welcome/index.html.erb (22.8ms)
+Completed 200 OK in 183ms (Views: 123.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/movies" for ::1 at 2016-03-13 23:18:44 +0530
+Processing by MoviesController#index as HTML
+  [1m[35mMovie Load (2.0ms)[0m  SELECT `movies`.* FROM `movies`
+  Rendered movies/index.html.erb within layouts/application (67.1ms)
+Completed 500 Internal Server Error in 10106ms (ActiveRecord: 26.5ms)
+
+ActionView::Template::Error (TypeError: Object doesn't support this property or method):
+    2: <html>
+    3: <head>
+    4:   <title>MovieAppCodecademy</title>
+    5:   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    6:   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___477383542_53066940'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (14.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (146.1ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (218.1ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (521.6ms)
+
+
+Started GET "/movies" for ::1 at 2016-03-13 23:20:38 +0530
+Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (1.0ms)[0m  [1mSELECT `movies`.* FROM `movies`[0m
+  Rendered movies/index.html.erb within layouts/application (12.7ms)
+Completed 500 Internal Server Error in 8427ms (ActiveRecord: 1.0ms)
+
+ActionView::Template::Error (TypeError: Object doesn't support this property or method):
+    4:   <title>Bolt Movie Database</title>
+    5:   <link href='http://fonts.googleapis.com/css?family=Oxygen:300,400,700' rel='stylesheet' type='text/css'>
+    6:   <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    7:   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    8:   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    9:   <%= csrf_meta_tags %>
+   10: </head>
+  app/views/layouts/application.html.erb:7:in `_app_views_layouts_application_html_erb___477383542_84462060'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (19.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (237.2ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (181.1ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (395.0ms)
+
+
+Started GET "/movies" for ::1 at 2016-03-13 23:22:54 +0530
+Processing by MoviesController#index as HTML
+  [1m[35mMovie Load (1.0ms)[0m  SELECT `movies`.* FROM `movies`
+  Rendered movies/index.html.erb within layouts/application (13.0ms)
+Completed 500 Internal Server Error in 7951ms (ActiveRecord: 1.0ms)
+
+ActionView::Template::Error (TypeError: Object doesn't support this property or method):
+    4:   <title>Bolt Movie Database</title>
+    5:   <link href='http://fonts.googleapis.com/css?family=Oxygen:300,400,700' rel='stylesheet' type='text/css'>
+    6:   <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    7:   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    8:   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    9:   <%= csrf_meta_tags %>
+   10: </head>
+  app/views/layouts/application.html.erb:7:in `_app_views_layouts_application_html_erb___477383542_84462060'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (16.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (146.9ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (136.1ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (314.1ms)
+
+
+Started GET "/movies" for ::1 at 2016-03-13 23:24:26 +0530
+Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (1.0ms)[0m  [1mSELECT `movies`.* FROM `movies`[0m
+  Rendered movies/index.html.erb within layouts/application (52.9ms)
+Completed 500 Internal Server Error in 6909ms (ActiveRecord: 28.3ms)
+
+ActionView::Template::Error (TypeError: Object doesn't support this property or method):
+    4:   <title>Bolt Movie Database</title>
+    5:   <link href='http://fonts.googleapis.com/css?family=Oxygen:300,400,700' rel='stylesheet' type='text/css'>
+    6:   <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    7:   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    8:   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    9:   <%= csrf_meta_tags %>
+   10: </head>
+  app/views/layouts/application.html.erb:7:in `_app_views_layouts_application_html_erb___477383542_84462060'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (14.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (155.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (137.4ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (312.9ms)
+
+
+Started GET "/movies" for ::1 at 2016-03-13 23:27:11 +0530
+Processing by MoviesController#index as HTML
+  [1m[35mMovie Load (1.0ms)[0m  SELECT `movies`.* FROM `movies`
+  Rendered movies/index.html.erb within layouts/application (9.0ms)
+Completed 500 Internal Server Error in 6990ms (ActiveRecord: 1.0ms)
+
+ActionView::Template::Error (TypeError: Object doesn't support this property or method):
+     5:   <title>Bolt Movie Database</title>
+     6:   <link href='http://fonts.googleapis.com/css?family=Oxygen:300,400,700' rel='stylesheet' type='text/css'>
+     7:   <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+     8:   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+     9:   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    10:   <%= csrf_meta_tags %>
+    11: </head>
+  app/views/layouts/application.html.erb:8:in `_app_views_layouts_application_html_erb___477383542_79291080'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (16.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (147.6ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (149.1ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (321.7ms)
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActiveRecord::SchemaMigration Load (1.0ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (1.0ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'MovieApp-Codecademy_development'
+  AND fk.table_name = 'actors'
+[0m
+  [1m[35m (1.0ms)[0m  SHOW CREATE TABLE `actors`
+  [1m[36m (1.0ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'MovieApp-Codecademy_development'
+  AND fk.table_name = 'movies'
+[0m
+  [1m[35m (0.0ms)[0m  SHOW CREATE TABLE `movies`
+  [1m[36m (1.0ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'MovieApp-Codecademy_development'
+  AND fk.table_name = 'parts'
+[0m
+  [1m[35m (0.0ms)[0m  SHOW CREATE TABLE `parts`
+
+
+Started GET "/" for ::1 at 2016-03-15 13:48:01 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (2.0ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/railties-4.2.5.1/lib/rails/templates/rails/welcome/index.html.erb (21.5ms)
+Completed 200 OK in 188ms (Views: 131.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/movies" for ::1 at 2016-03-15 13:48:10 +0530
+Processing by MoviesController#index as HTML
+  [1m[35mMovie Load (2.0ms)[0m  SELECT `movies`.* FROM `movies`
+  Rendered movies/index.html.erb within layouts/application (49.0ms)
+Completed 500 Internal Server Error in 8673ms (ActiveRecord: 21.0ms)
+
+ActionView::Template::Error (TypeError: Object doesn't support this property or method):
+     5:   <title>Bolt Movie Database</title>
+     6:   <link href='http://fonts.googleapis.com/css?family=Oxygen:300,400,700' rel='stylesheet' type='text/css'>
+     7:   <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+     8:   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+     9:   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    10:   <%= csrf_meta_tags %>
+    11: </head>
+  app/views/layouts/application.html.erb:8:in `_app_views_layouts_application_html_erb___648110140_53204484'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (15.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (147.2ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (205.3ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (472.0ms)
+
+
+Started GET "/movies" for ::1 at 2016-03-15 13:57:46 +0530
+Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (1.0ms)[0m  [1mSELECT `movies`.* FROM `movies`[0m
+  Rendered movies/index.html.erb within layouts/application (14.0ms)
+Completed 200 OK in 41ms (Views: 39.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/stylesheets/default.css" for ::1 at 2016-03-15 13:57:46 +0530
+
+ActionController::RoutingError (No route matches [GET] "/stylesheets/default.css"):
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.2ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (96.6ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (301.4ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (137.1ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (336.5ms)
+
+
+Started GET "/javascripts/default.js" for ::1 at 2016-03-15 13:57:47 +0530
+
+ActionController::RoutingError (No route matches [GET] "/javascripts/default.js"):
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (212.2ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (141.1ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (313.3ms)
+
+
+Started GET "/movies/1" for ::1 at 2016-03-15 13:58:02 +0530
+Processing by MoviesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mMovie Load (77.6ms)[0m  SELECT  `movies`.* FROM `movies` WHERE `movies`.`id` = 1 LIMIT 1
+  [1m[36mActor Load (33.0ms)[0m  [1mSELECT `actors`.* FROM `actors` INNER JOIN `parts` ON `actors`.`id` = `parts`.`actor_id` WHERE `parts`.`movie_id` = 1[0m
+  Rendered movies/show.html.erb within layouts/application (190.3ms)
+Completed 200 OK in 848ms (Views: 164.7ms | ActiveRecord: 179.2ms)
+
+
+Started GET "/stylesheets/default.css" for ::1 at 2016-03-15 13:58:03 +0530
+
+ActionController::RoutingError (No route matches [GET] "/stylesheets/default.css"):
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (189.2ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (139.1ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (313.1ms)
+
+
+Started GET "/javascripts/default.js" for ::1 at 2016-03-15 13:58:04 +0530
+
+ActionController::RoutingError (No route matches [GET] "/javascripts/default.js"):
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (172.6ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (163.2ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (400.1ms)
+
+
+Started GET "/movies/1" for ::1 at 2016-03-15 14:15:18 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by MoviesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mMovie Load (1.0ms)[0m  SELECT  `movies`.* FROM `movies` WHERE `movies`.`id` = 1 LIMIT 1
+  [1m[36mActor Load (1.0ms)[0m  [1mSELECT `actors`.* FROM `actors` INNER JOIN `parts` ON `actors`.`id` = `parts`.`actor_id` WHERE `parts`.`movie_id` = 1[0m
+  Rendered movies/show.html.erb within layouts/application (111.8ms)
+Completed 200 OK in 11251ms (Views: 10926.5ms | ActiveRecord: 89.6ms)
+
+
+Started GET "/assets/movies.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-15 14:15:30 +0530
+
+
+Started GET "/assets/application.self-3eb49ea1192afad2321a8aaf8b3414a59db299f7e1fd2ed845cef6694b281e48.css?body=1" for ::1 at 2016-03-15 14:15:31 +0530
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-03-15 14:15:31 +0530
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-03-15 14:15:31 +0530
+
+
+Started GET "/assets/turbolinks.self-6fb86ff58d930b560704818c7d9e5f60d83d65b91c6778c7f7e4210d5ba82127.js?body=1" for ::1 at 2016-03-15 14:15:31 +0530
+
+
+Started GET "/assets/communication.self-118ef7a34a0aa2a20113441438dfa80d7ffbab693485e72d67ff800f0248f35d.js?body=1" for ::1 at 2016-03-15 14:15:31 +0530
+
+
+Started GET "/assets/movies.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-15 14:15:31 +0530
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2016-03-15 14:15:31 +0530
+
+
+Started GET "/movies" for ::1 at 2016-03-15 17:24:31 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by MoviesController#index as HTML
+  [1m[35mMovie Load (1.0ms)[0m  SELECT `movies`.* FROM `movies`
+  Rendered movies/index.html.erb within layouts/application (65.2ms)
+Completed 200 OK in 1030ms (Views: 911.9ms | ActiveRecord: 11.0ms)
+
+
+Started GET "/movies/4" for ::1 at 2016-03-15 17:26:02 +0530
+Processing by MoviesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mMovie Load (2.0ms)[0m  [1mSELECT  `movies`.* FROM `movies` WHERE `movies`.`id` = 4 LIMIT 1[0m
+  [1m[35mActor Load (1.5ms)[0m  SELECT `actors`.* FROM `actors` INNER JOIN `parts` ON `actors`.`id` = `parts`.`actor_id` WHERE `parts`.`movie_id` = 4
+  Rendered movies/show.html.erb within layouts/application (96.7ms)
+Completed 200 OK in 554ms (Views: 206.1ms | ActiveRecord: 22.5ms)
