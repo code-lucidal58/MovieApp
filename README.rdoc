@@ -1,4 +1,4 @@
-This is an Webpage made completely of Ruby on Rails
+This is a webpage made completely of Ruby on Rails
 
 Database used is SQLite
 
